@@ -15,21 +15,34 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.katilijiwoadiwiyono.core.domain.model.NewsModel
 import com.katilijiwoadiwiyono.newsapp.theme.BackgroundGrey500
 import com.katilijiwoadiwiyono.newsapp.theme.OutlineBoxGrey500
 import com.katilijiwoadiwiyono.newsapp.theme.Pink500
+import com.katilijiwoadiwiyono.newsapp.utils.subStringContent
 
 @Preview
 @Composable
 fun ListCardNewsPreview() {
     ListCardNews(
-        modifier = Modifier
+        modifier = Modifier,
+        NewsModel(
+            id = 1,
+            createdAt = "",
+            contributorName = "",
+            contributorAvatar = "",
+            title = "",
+            content = "",
+            contentThumbnail = "",
+            slideshow = listOf(),
+        )
     )
 }
 
 @Composable
 fun ListCardNews(
-    modifier: Modifier
+    modifier: Modifier,
+    news: NewsModel
 ) {
 
     Column(
@@ -41,24 +54,24 @@ fun ListCardNews(
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)
                 .background(BackgroundGrey500),
-            model = "https://cms.hugofox.com//resources/images/a0fea022-8ec7-4a37-b4e7-214846e7656f.jpg",
-            contentDescription = null,
-            contentScale = ContentScale.FillWidth
+            model = news.contentThumbnail,
+            contentDescription = "",
+            contentScale = ContentScale.Crop
         )
         Text(
             modifier = Modifier.padding(top = 16.dp),
-            text = "Fabulous",
+            text = news.title,
             fontSize = 18.sp,
             color = Pink500
         )
         Text(
             modifier = Modifier.padding(top = 16.dp),
-            text = "Prada Meluncurkan Desain Terbarunya di Awal 2021",
+            text = news.content.subStringContent(),
             fontSize = 28.sp,
         )
         Text(
             modifier = Modifier.padding(top = 16.dp),
-            text = "4 menit lalu",
+            text = news.createdAt,
             fontSize = 14.sp,
         )
         Divider(
