@@ -9,10 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.programmergabut.recordapp.navigation.Screen
-import com.programmergabut.recordapp.theme.RecordAppTheme
+import com.katilijiwoadiwiyono.newsapp.navigation.Screen
+import com.katilijiwoadiwiyono.newsapp.theme.RecordAppTheme
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModel<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -26,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                         startDestination = Screen.Screen1.route
                     ) {
                         composable(route = Screen.Screen1.route) {
-                            MainScreen()
+                            MainScreen(viewModel)
                         }
                         composable(route = Screen.Screen2.route) {
 

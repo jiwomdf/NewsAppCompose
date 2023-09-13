@@ -1,4 +1,4 @@
-package com.programmergabut.recordapp.navigation
+package com.katilijiwoadiwiyono.newsapp.navigation
 
 sealed class Screen(val route: String) {
     object Screen1: Screen("screen_1")

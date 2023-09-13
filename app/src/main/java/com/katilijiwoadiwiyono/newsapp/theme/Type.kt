@@ -1,4 +1,4 @@
-package com.programmergabut.recordapp.theme
+package com.katilijiwoadiwiyono.newsapp.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

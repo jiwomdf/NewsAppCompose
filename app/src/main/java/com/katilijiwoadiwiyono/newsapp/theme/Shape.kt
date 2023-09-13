@@ -1,4 +1,4 @@
-package com.programmergabut.recordapp.theme
+package com.katilijiwoadiwiyono.newsapp.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
