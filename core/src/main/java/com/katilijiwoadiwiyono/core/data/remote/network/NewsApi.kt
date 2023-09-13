@@ -8,7 +8,7 @@ import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logging
 import kotlinx.serialization.json.Json
 
-class Api {
+class NewsApi {
     val httpClient = HttpClient(Android) {
         install(Logging) {
             level = LogLevel.ALL
