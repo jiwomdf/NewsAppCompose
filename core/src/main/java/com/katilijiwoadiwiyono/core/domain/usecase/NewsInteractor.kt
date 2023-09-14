@@ -9,4 +9,8 @@ class NewsInteractor constructor(
     override suspend fun getNews(): List<NewsModel> {
         return repository.getNews()
     }
+
+    override suspend fun getNewsDetail(id: Int): NewsModel? {
+        return repository.getNews().firstOrNull { it.id == id }
+    }
 }

@@ -1,4 +1,4 @@
-package com.katilijiwoadiwiyono.newsapp.features.dashboard
+package com.katilijiwoadiwiyono.newsapp.features.main.dashboard
 
 import android.util.Log
 import androidx.compose.runtime.MutableState
@@ -14,7 +14,7 @@ interface IMainViewModel {
     fun getNews()
 }
 
-class FakeMainViewModel() : IMainViewModel{
+class FakeMainViewModel() : IMainViewModel {
     override val news = mutableStateOf<List<NewsModel>>(emptyList())
     override fun getNews() {}
 }

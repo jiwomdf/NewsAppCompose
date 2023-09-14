@@ -5,4 +5,5 @@ import com.katilijiwoadiwiyono.core.domain.model.NewsModel
 
 interface NewsUseCase {
     suspend fun getNews(): List<NewsModel>
+    suspend fun getNewsDetail(id: Int): NewsModel?
 }
