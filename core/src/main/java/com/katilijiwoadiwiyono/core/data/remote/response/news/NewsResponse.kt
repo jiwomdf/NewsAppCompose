@@ -12,5 +12,5 @@ data class NewsResponse(
     @SerialName("title") val title: String,
     @SerialName("content") val content: String,
     @SerialName("contentThumbnail") val contentThumbnail: String,
-    @SerialName("slideshow") val slideshow: List<Unit>,
+    @SerialName("slideshow") val slideshow: List<String>,
 )

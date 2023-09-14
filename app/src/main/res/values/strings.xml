@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NewsApp</string>
+
+    <string name="please_check_your_connection">Please check your connection</string>
+    <string name="server_not_responding_please_try_again">Server not responding, please try again</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="more_info">Baca Juga:</string>
+    <string name="more_info_content">Wah! Ternyata ini Kebiasaan Tidur Aneh di Anggota BTS</string>
 </resources>

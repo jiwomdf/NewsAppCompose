@@ -10,7 +10,7 @@ data class NewsModel(
     val title: String,
     val content: String,
     val contentThumbnail: String,
-    val slideshow: List<Unit>,
+    val slideshow: List<String>,
 ) {
     companion object {
         fun mapNewsModel(newsResponse: List<NewsResponse>): List<NewsModel> {

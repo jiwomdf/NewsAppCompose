@@ -1,16 +1,17 @@
 package com.katilijiwoadiwiyono.core.data.remote.source
 
-import com.katilijiwoadiwiyono.core.data.remote.response.news.NewsResponse
-import com.katilijiwoadiwiyono.core.data.remote.network.NewsApi
 import com.katilijiwoadiwiyono.core.data.remote.network.HttpRoutes
-import io.ktor.client.request.get
+import com.katilijiwoadiwiyono.core.data.remote.network.NewsApi
+import com.katilijiwoadiwiyono.core.data.remote.response.news.NewsResponse
+import com.katilijiwoadiwiyono.core.utils.ApiResponse
+import com.katilijiwoadiwiyono.core.utils.safeRequest
 
 class RemoteDataSourceImpl(newsApi: NewsApi): RemoteDataSource {
 
     private val httpClient = newsApi.httpClient
 
-    override suspend fun getNews(): List<NewsResponse> {
-        return httpClient.get(HttpRoutes.GET_NEWS_COLLECTIONS)
+    override suspend fun getNews(): ApiResponse<List<NewsResponse>> {
+        return httpClient.safeRequest(HttpRoutes.GET_NEWS_COLLECTIONS)
     }
 
 }

@@ -2,7 +2,6 @@ package com.katilijiwoadiwiyono.newsapp.features.main.detail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -11,9 +10,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,60 +17,56 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.katilijiwoadiwiyono.core.domain.model.NewsModel
+import com.katilijiwoadiwiyono.newsapp.R
 import com.katilijiwoadiwiyono.newsapp.common.components.PageError
 import com.katilijiwoadiwiyono.newsapp.common.components.TopBarDefault
 import com.katilijiwoadiwiyono.newsapp.theme.BackgroundGrey500
 import com.katilijiwoadiwiyono.newsapp.theme.Pink500
-import com.katilijiwoadiwiyono.newsapp.utils.subStringContent
+import com.katilijiwoadiwiyono.newsapp.utils.toDateGlobalFormat
+import com.katilijiwoadiwiyono.newsapp.utils.toString
 
 @Preview
 @Composable
 fun DetailScreenPreview() {
     DetailScreen(
-        newsId = 0,
-        viewModel = FakeDetailViewModel()
+        newsModel = NewsModel(
+            id = 1,
+            createdAt = "",
+            contributorName = "",
+            contributorAvatar = "",
+            title = "",
+            content = "",
+            contentThumbnail = "",
+            slideshow = listOf(),
+        )
     )
 }
 
 @Composable
 fun DetailScreen(
-    newsId: Int,
-    viewModel: IDetailViewModel,
+    newsModel: NewsModel?
 ) {
-
-    val newsDetail by remember { viewModel.newsDetail }
-
-    LaunchedEffect(Unit) {
-        viewModel.getNewsDetail(newsId)
-    }
-
     Scaffold(
         topBar = {
             TopBarDefault()
         }
     ) { padding ->
-        newsDetail?.let {
+        newsModel?.let {
             DetailContent(
                 modifier = Modifier.padding(padding),
                 newsModel = it
             )
         } ?: run {
-            PageError(
-                modifier = Modifier
-                    .padding(padding)
-                    .fillMaxSize()
-            )
+            PageError(modifier = Modifier.padding(padding))
         }
     }
 
@@ -82,6 +74,8 @@ fun DetailScreen(
 
 @Composable
 fun DetailContent(modifier: Modifier, newsModel: NewsModel) {
+    val context = LocalContext.current
+
     Column(
         modifier = modifier
             .verticalScroll(rememberScrollState()),
@@ -103,7 +97,9 @@ fun DetailContent(modifier: Modifier, newsModel: NewsModel) {
                 start = 16.dp,
                 bottom = 32.dp
             ),
-            text = newsModel.createdAt,
+            text = newsModel.createdAt
+                .toDateGlobalFormat()
+                ?.toString(f = "dd MMM yyyy") ?: "",
             fontSize = 14.sp,
         )
         AsyncImage(
@@ -138,7 +134,7 @@ fun DetailContent(modifier: Modifier, newsModel: NewsModel) {
                         fontStyle = FontStyle.Italic
                     )
                 ) {
-                    append("Baca juga: ")
+                    append(context.getString(R.string.more_info))
                 }
                 withStyle(
                     style = SpanStyle(
@@ -146,7 +142,7 @@ fun DetailContent(modifier: Modifier, newsModel: NewsModel) {
                         fontWeight = FontWeight.Bold
                     )
                 ) {
-                    append("Wah! Ternyata ini Kebiasaan Tidur Aneh di Anggota BTS")
+                    append(" ${context.getString(R.string.more_info_content)}")
                 }
             },
             fontSize = 18.sp,

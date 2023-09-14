@@ -7,7 +7,7 @@ import java.util.Locale
 
 fun String.toDateGlobalFormat(): Date? {
     val knownPatterns = ArrayList<SimpleDateFormat>()
-    knownPatterns.add(SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault()))
+    knownPatterns.add(SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss", Locale.getDefault()))
     for (pattern in knownPatterns) {
         try {
             pattern.parse(this)?.let {

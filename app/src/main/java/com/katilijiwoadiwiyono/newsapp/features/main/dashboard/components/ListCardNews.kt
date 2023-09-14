@@ -1,6 +1,5 @@
 package com.katilijiwoadiwiyono.newsapp.features.main.dashboard.components
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -24,13 +23,15 @@ import com.katilijiwoadiwiyono.newsapp.theme.BackgroundGrey500
 import com.katilijiwoadiwiyono.newsapp.theme.OutlineBoxGrey500
 import com.katilijiwoadiwiyono.newsapp.theme.Pink500
 import com.katilijiwoadiwiyono.newsapp.utils.subStringContent
+import com.katilijiwoadiwiyono.newsapp.utils.toDateGlobalFormat
+import com.katilijiwoadiwiyono.newsapp.utils.toString
 
 @Preview
 @Composable
 fun ListCardNewsPreview() {
     ListCardNews(
         modifier = Modifier,
-        NewsModel(
+        news = NewsModel(
             id = 1,
             createdAt = "",
             contributorName = "",
@@ -82,7 +83,7 @@ fun ListCardNews(
         )
         Text(
             modifier = Modifier.padding(top = 16.dp),
-            text = news.createdAt,
+            text = news.createdAt.toDateGlobalFormat()?.toString(f = "dd MMM yyyy") ?: "",
             fontSize = 14.sp,
         )
         Divider(
