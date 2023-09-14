@@ -82,7 +82,8 @@ fun MainScreen(
                 .padding(top = it.calculateTopPadding()),
             verticalArrangement = Arrangement.Center
         ) {
-            if(news.isEmpty()) {
+            val isLoading = news.isEmpty() && commonError == 0
+            if(isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
