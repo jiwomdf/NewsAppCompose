@@ -1,18 +1,23 @@
 package com.katilijiwoadiwiyono.newsapp.features.main.detail
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
@@ -74,7 +79,9 @@ fun DetailScreen(
 
 @Composable
 fun DetailContent(modifier: Modifier, newsModel: NewsModel) {
+
     val context = LocalContext.current
+    var displayImg = remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
@@ -109,11 +116,18 @@ fun DetailContent(modifier: Modifier, newsModel: NewsModel) {
                 .align(Alignment.CenterHorizontally)
                 .background(BackgroundGrey500),
             model = ImageRequest.Builder(LocalContext.current)
-                .data(newsModel.contentThumbnail)
+                .data(displayImg.value.ifEmpty { newsModel.contentThumbnail })
                 .crossfade(true)
                 .build(),
             contentDescription = "",
             contentScale = ContentScale.Crop
+        )
+        SlideShow(
+            modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
+            slideshow = newsModel.slideshow,
+            onCLick =  {
+                displayImg.value = it
+            }
         )
         Text(
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
@@ -130,7 +144,6 @@ fun DetailContent(modifier: Modifier, newsModel: NewsModel) {
             text = buildAnnotatedString {
                 withStyle(
                     style = SpanStyle(
-                        color = Color.Black,
                         fontStyle = FontStyle.Italic
                     )
                 ) {
@@ -148,4 +161,42 @@ fun DetailContent(modifier: Modifier, newsModel: NewsModel) {
             fontSize = 18.sp,
         )
     }
+}
+
+@Composable
+fun SlideShow(
+    modifier: Modifier,
+    slideshow: List<String>,
+    onCLick: (url: String) -> Unit
+) {
+
+    LazyRow(
+        modifier = modifier
+    ) {
+        items(slideshow.size) { idx ->
+            val item = slideshow[idx]
+            Card(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .clickable {
+                        onCLick.invoke(item)
+                    },
+                shape = RoundedCornerShape(8),
+            ) {
+                AsyncImage(
+                    modifier = Modifier
+                        .height(120.dp)
+                        .fillMaxWidth()
+                        .background(BackgroundGrey500),
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(item)
+                        .crossfade(true)
+                        .build(),
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop
+                )
+            }
+        }
+    }
+
 }
