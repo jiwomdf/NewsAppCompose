@@ -1,6 +1,5 @@
 package com.katilijiwoadiwiyono.newsapp.features.main.dashboard
 
-import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -8,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.katilijiwoadiwiyono.core.domain.model.NewsModel
 import com.katilijiwoadiwiyono.core.domain.usecase.NewsUseCase
-import com.katilijiwoadiwiyono.core.utils.ApiResponse
 import com.katilijiwoadiwiyono.core.utils.Resource
 import com.katilijiwoadiwiyono.newsapp.R
 import kotlinx.coroutines.launch

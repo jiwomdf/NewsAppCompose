@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.katilijiwoadiwiyono.core.domain.model.NewsModel
@@ -50,6 +51,7 @@ fun ListCardNews(
     news: NewsModel,
     onClick: () -> Unit
 ) {
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
@@ -63,12 +65,15 @@ fun ListCardNews(
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)
                 .background(BackgroundGrey500),
-            model = ImageRequest.Builder(LocalContext.current)
+            model = ImageRequest.Builder(context)
                 .data(news.contentThumbnail)
                 .crossfade(true)
                 .build(),
             contentDescription = "",
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
+            imageLoader = ImageLoader.Builder(context)
+                .respectCacheHeaders(false)
+                .build()
         )
         Text(
             modifier = Modifier.padding(top = 16.dp),
