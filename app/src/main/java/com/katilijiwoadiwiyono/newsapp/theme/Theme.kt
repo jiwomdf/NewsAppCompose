@@ -22,10 +22,10 @@ private val LightColorPalette = lightColorScheme(
 
 @Composable
 fun RecordAppTheme(
-    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    isUseDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (!useDarkTheme) LightColorPalette else DarkColorPalette
+    val colorScheme = if (!isUseDarkTheme) LightColorPalette else DarkColorPalette
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
