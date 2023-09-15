@@ -1,4 +1,4 @@
-package com.katilijiwoadiwiyono.newsapp.navigation
+package com.katilijiwoadiwiyono.newsapp.features.main.navigation
 
 sealed class Screen(val route: String) {
     object DashboardScreen: Screen("dashboard_screen")

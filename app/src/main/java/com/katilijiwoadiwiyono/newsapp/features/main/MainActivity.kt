@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import com.katilijiwoadiwiyono.newsapp.common.components.StatusBarColor
 import com.katilijiwoadiwiyono.newsapp.common.components.ThemeState
 import com.katilijiwoadiwiyono.newsapp.features.main.dashboard.MainViewModel
+import com.katilijiwoadiwiyono.newsapp.features.main.navigation.MainNavigation
 import com.katilijiwoadiwiyono.newsapp.theme.RecordAppTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

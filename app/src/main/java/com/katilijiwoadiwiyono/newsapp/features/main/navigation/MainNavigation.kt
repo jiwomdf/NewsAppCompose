@@ -1,13 +1,13 @@
-package com.katilijiwoadiwiyono.newsapp.features.main
+package com.katilijiwoadiwiyono.newsapp.features.main.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.katilijiwoadiwiyono.newsapp.features.main.MainSharedViewModel
 import com.katilijiwoadiwiyono.newsapp.features.main.dashboard.MainScreen
 import com.katilijiwoadiwiyono.newsapp.features.main.dashboard.MainViewModel
 import com.katilijiwoadiwiyono.newsapp.features.main.detail.DetailScreen
-import com.katilijiwoadiwiyono.newsapp.navigation.Screen
 
 @Composable
 fun MainNavigation(

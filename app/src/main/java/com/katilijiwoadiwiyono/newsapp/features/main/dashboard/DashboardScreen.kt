@@ -26,7 +26,7 @@ import com.katilijiwoadiwiyono.newsapp.common.components.TopBarDashboard
 import com.katilijiwoadiwiyono.newsapp.features.main.FakeSharedViewModel
 import com.katilijiwoadiwiyono.newsapp.features.main.IMainSharedViewModel
 import com.katilijiwoadiwiyono.newsapp.features.main.dashboard.components.ListCardNews
-import com.katilijiwoadiwiyono.newsapp.navigation.Screen
+import com.katilijiwoadiwiyono.newsapp.features.main.navigation.Screen
 import kotlinx.coroutines.launch
 
 @Preview
