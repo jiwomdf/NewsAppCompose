@@ -57,7 +57,7 @@ fun MainScreen(
     }
 
     LaunchedEffect(commonError) {
-        if (commonError != 0) {
+        if (commonError != 0 && news.isEmpty()) {
             coroutineScope.launch {
                 snackBarHostState.showSnackbar(
                     message = context.getString(commonError),
